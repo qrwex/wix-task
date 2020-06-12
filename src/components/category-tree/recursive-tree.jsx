@@ -6,7 +6,7 @@ const RecursiveTree = ({ categories }) => (
   categories.map(({ label, children }, index) => (
     <TreeItem key={index} label={label} nodeId={uuid()}>
       {children && (
-      <RecursiveTree categories={children} />
+        <RecursiveTree categories={children}/>
       )}
     </TreeItem>
   ))
