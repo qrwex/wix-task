@@ -3,10 +3,10 @@ import {v4 as uuid} from 'uuid'
 import TreeItem from '@material-ui/lab/TreeItem';
 
 const RecursiveTree = ({categories}) => (
-  categories.map((category, index) => (
-      <TreeItem key={index} label={category.label} nodeId={uuid()}>
-        {category.children && (
-          <RecursiveTree categories={category.children}/>
+  categories.map(({label, children}, index) => (
+      <TreeItem key={index} label={label} nodeId={uuid()}>
+        {children && (
+          <RecursiveTree categories={children}/>
         )}
       </TreeItem>
     )
