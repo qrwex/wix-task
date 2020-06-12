@@ -1,1 +1,1 @@
-export {default} from './category-tree'
+export { default } from './category-tree';

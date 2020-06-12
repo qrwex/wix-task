@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import TreeView from '@material-ui/lab/TreeView';
-import IterativeTree from './iterative-tree';
-import RecursiveTree from './recursive-tree';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Box} from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import RecursiveTree from './recursive-tree';
+import IterativeTree from './iterative-tree';
 
 const CategoryTree = () => {
   const initialCategories = [
@@ -24,22 +24,22 @@ const CategoryTree = () => {
               label: 'Quis',
               children: [
                 {
-                  label: 'Odio'
-                }
-              ]
-            }
-          ]
+                  label: 'Odio',
+                },
+              ],
+            },
+          ],
         },
         {
           label: 'Sit',
           children: [
             {
-              label: 'Amet'
+              label: 'Amet',
             },
             {
-              label: 'Consectetur'
-            }
-          ]
+              label: 'Consectetur',
+            },
+          ],
         },
         {
           label: 'Adipiscing',
@@ -48,41 +48,38 @@ const CategoryTree = () => {
               label: 'Elit',
               children: [
                 {
-                  label: 'Vestibulum'
+                  label: 'Vestibulum',
                 },
                 {
-                  label: 'Vitae'
+                  label: 'Vitae',
                 },
-              ]
+              ],
             },
-          ]
-        }
-      ]
-    }
-  ]
+          ],
+        },
+      ],
+    },
+  ];
 
-  const [categories, setCategories] = useState(initialCategories);
-  const [isIterative, setIterative] = useState(false)
+  const [categories] = useState(initialCategories);
+  const [isIterative, setIterative] = useState(false);
 
   const toggleMode = () => {
-    setIterative(!isIterative)
-  }
+    setIterative(!isIterative);
+  };
 
   const Component = isIterative ? IterativeTree : RecursiveTree;
 
   return (
     <Box p={2}>
-      <Grid container spacing={2} alignItems='center'>
+      <Grid container spacing={2} alignItems="center">
         <Grid item>
           <Typography>
             Recursive
           </Typography>
         </Grid>
         <Grid item>
-          <Switch
-            checked={isIterative}
-            onChange={toggleMode}
-          />
+          <Switch checked={isIterative} onChange={toggleMode} />
         </Grid>
         <Grid item>
           <Typography>
@@ -90,13 +87,16 @@ const CategoryTree = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
-            <Component categories={categories}/>
+          <TreeView
+            defaultCollapseIcon={<ExpandMoreIcon />}
+            defaultExpandIcon={<ChevronRightIcon />}
+          >
+            <Component categories={categories} />
           </TreeView>
         </Grid>
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
 export default CategoryTree;
