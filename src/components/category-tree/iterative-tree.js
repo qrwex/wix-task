@@ -3,9 +3,9 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import {v4 as uuid} from 'uuid';
 
 const IterativeTree = ({categories}) => {
-  const render = (category) => {
+  const render = (category, index) => {
     return (
-      <TreeItem label={category.label} nodeId={uuid()}>
+      <TreeItem label={category.label} key={index} nodeId={uuid()}>
         {category.children && category.children.map(render)}
       </TreeItem>
     )
