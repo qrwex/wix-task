@@ -7,8 +7,13 @@ const RecursiveTree = ({categories}) => {
   return categories.map(category => {
     const id = uuid();
 
-    return Array.isArray(category) ?
-      <RecursiveTree categories={category} key={id} /> : <TreeItem key={id} label={category} nodeId={id} />
+    return (
+      <TreeItem key={id} label={category.label} nodeId={id} >
+        {category.children && (
+          <RecursiveTree categories={category.children} />
+        )}
+      </TreeItem>
+    );
   })
 }
 
