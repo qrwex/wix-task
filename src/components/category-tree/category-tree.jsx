@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import useCategories from 'hooks/use-categories';
 import RecursiveTree from './recursive-tree';
 import IterativeTree from './iterative-tree';
 import { initialCategories } from './constants';
-import useCategories from '../../hooks/use-categories';
 
 const CategoryTree = () => {
   const [categories, addCategory] = useCategories(initialCategories);

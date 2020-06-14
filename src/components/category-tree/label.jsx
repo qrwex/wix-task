@@ -2,7 +2,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import AddNodeDialog from '../add-node-dialog';
+import AddNodeDialog from 'components/add-node-dialog';
 
 const Label = ({ node, onAdd }) => {
   const [open, setOpen] = React.useState(false);
