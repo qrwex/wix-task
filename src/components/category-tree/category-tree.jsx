@@ -8,67 +8,18 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import RecursiveTree from './recursive-tree';
 import IterativeTree from './iterative-tree';
+import { initialCategories } from './constants';
+import useCategories from '../../hooks/use-categories';
 
 const CategoryTree = () => {
-  const initialCategories = [
-    {
-      label: 'Lorem',
-      children: [
-        {
-          label: 'Ipsum',
-        },
-        {
-          label: 'Dolor',
-          children: [
-            {
-              label: 'Quis',
-              children: [
-                {
-                  label: 'Odio',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Sit',
-          children: [
-            {
-              label: 'Amet',
-            },
-            {
-              label: 'Consectetur',
-            },
-          ],
-        },
-        {
-          label: 'Adipiscing',
-          children: [
-            {
-              label: 'Elit',
-              children: [
-                {
-                  label: 'Vestibulum',
-                },
-                {
-                  label: 'Vitae',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
-
-  const [categories] = useState(initialCategories);
+  const [categories, addCategory] = useCategories(initialCategories);
   const [isIterative, setIterative] = useState(false);
 
   const toggleMode = () => {
     setIterative(!isIterative);
   };
 
-  const Component = isIterative ? IterativeTree : RecursiveTree;
+  const Tree = isIterative ? IterativeTree : RecursiveTree;
 
   return (
     <Box p={2}>
@@ -91,7 +42,7 @@ const CategoryTree = () => {
             defaultCollapseIcon={<ExpandMoreIcon />}
             defaultExpandIcon={<ChevronRightIcon />}
           >
-            <Component categories={categories} />
+            <Tree nodes={categories} key={isIterative ? 'i' : 'r'} onAdd={addCategory} />
           </TreeView>
         </Grid>
       </Grid>

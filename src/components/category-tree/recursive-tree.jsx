@@ -1,15 +1,15 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import TreeItem from '@material-ui/lab/TreeItem';
+import Label from './label';
 
-const RecursiveTree = ({ categories }) => (
-  categories.map(({ label, children }, index) => (
-    <TreeItem key={index} label={label} nodeId={uuid()}>
-      {children && (
-        <RecursiveTree categories={children}/>
-      )}
+const RecursiveTree = ({ nodes, onAdd }) => {
+  const renderTree = (node) => (
+    <TreeItem label={<Label node={node} onAdd={onAdd} />} key={node.id} nodeId={node.id}>
+      {node.children?.map(renderTree)}
     </TreeItem>
-  ))
-);
+  );
+
+  return nodes.map(renderTree);
+};
 
 export default RecursiveTree;
