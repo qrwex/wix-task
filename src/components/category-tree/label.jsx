@@ -1,7 +1,6 @@
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
+import { IconButton, Box } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import React from 'react';
-import Box from '@material-ui/core/Box';
 import AddNodeDialog from 'components/add-node-dialog';
 
 const Label = ({ node, onAdd }) => {
@@ -30,7 +29,7 @@ const Label = ({ node, onAdd }) => {
         {node.label}
       </Box>
       <IconButton size="small" onClick={handleClick}>
-        <AddIcon />
+        <Add />
       </IconButton>
       <AddNodeDialog open={open} onClose={handleClose} onSubmit={handleSubmit} />
     </>

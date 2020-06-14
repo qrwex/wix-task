@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import TreeView from '@material-ui/lab/TreeView';
-import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import {
+  Switch, Box, Typography, Grid,
+} from '@material-ui/core';
+import { ExpandMore, ChevronRight } from '@material-ui/icons';
 import useCategories from 'hooks/use-categories';
 import RecursiveTree from './recursive-tree';
 import IterativeTree from './iterative-tree';
 import { initialCategories } from './constants';
 
 const CategoryTree = () => {
-  const [categories, addCategory] = useCategories(initialCategories);
+  const [categories, addCategory, removeCategory] = useCategories(initialCategories);
   const [isIterative, setIterative] = useState(false);
 
   const toggleMode = () => {
@@ -39,10 +37,10 @@ const CategoryTree = () => {
         </Grid>
         <Grid item xs={12}>
           <TreeView
-            defaultCollapseIcon={<ExpandMoreIcon />}
-            defaultExpandIcon={<ChevronRightIcon />}
+            defaultCollapseIcon={<ExpandMore />}
+            defaultExpandIcon={<ChevronRight />}
           >
-            <Tree nodes={categories} key={isIterative ? 'i' : 'r'} onAdd={addCategory} />
+            <Tree nodes={categories} key={isIterative ? 'i' : 'r'} onAdd={addCategory} onDelete={removeCategory} />
           </TreeView>
         </Grid>
       </Grid>

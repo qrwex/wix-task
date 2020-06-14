@@ -1,11 +1,10 @@
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { Form, Formik } from 'formik';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
+import {
+  DialogTitle, DialogContent, Dialog, DialogActions, Button,
+} from '@material-ui/core';
 import React from 'react';
 import * as yup from 'yup';
+import StopPropagation from 'components/stop-propagation/stop-propagation';
 import FormTextField from '../form-text-field';
 
 const validationSchema = yup.object().shape({
@@ -19,7 +18,7 @@ const AddNodeDialog = (props) => {
     <Formik initialValues={{ label: '' }} onSubmit={onSubmit} validationSchema={validationSchema} validateOnMount>
       {(formikProps) => (
         <Dialog open={open} onClose={onClose}>
-          <Form>
+          <StopPropagation component={Form}>
             <DialogTitle>Add category</DialogTitle>
             <DialogContent>
               <FormTextField autoFocus margin="dense" label="Label" type="text" fullWidth name="label" autoComplete="off" />
@@ -32,7 +31,7 @@ const AddNodeDialog = (props) => {
                 Save
               </Button>
             </DialogActions>
-          </Form>
+          </StopPropagation>
         </Dialog>
       )}
     </Formik>

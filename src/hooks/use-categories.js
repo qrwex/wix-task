@@ -22,9 +22,22 @@ const useCategories = (initialState) => {
     setCategories(categories.map(mapCategories));
   };
 
+  const removeCategoryById = (id) => {
+    const remove = (list) => (
+      list.filter((category) => category.id !== id)
+        .map(({ children, ...rest }) => ({
+          ...rest,
+          ...(children ? { children: remove(children) } : {}),
+        }))
+    );
+
+    setCategories(remove(categories));
+  };
+
   return [
     categories,
     addCategory,
+    removeCategoryById,
     setCategories,
   ];
 };
